@@ -1,0 +1,6 @@
+Set-PSReadLineOption -Colors @{ "Parameter" = "#BFFF00" }
+function prompt 
+{
+	"[$(Get-Date -Format "HH:mm:ss")] " + $(get-location) + "> "
+}
+cd c:\sandbox 
