@@ -1,0 +1,110 @@
+---
+GIT
+---
+
+Create a new branch from DEV
+	switch to dev
+	fetch dev
+	create branch and switch to it
+	push the branch to remote
+
+	git checkout development
+	git fetch 
+	get checkout -b <branch name>
+	git push --set-upstream origin <branch name>
+	
+	
+	
+Delete a local branch
+	git branch -d <branch name>
+
+Delete a remote branch
+	git push origin --delete <branch_name>
+
+	
+Pull changes from development TO <local_branch>
+	git checkout <local_branch>
+	git merge develop
+
+
+Create a branch from a branch (https://stackoverflow.com/questions/4470523/create-a-branch-in-git-from-another-branch)
+	$ git checkout -b myFeature dev			Creates MyFeature branch off dev. 
+	
+	Do your work and then
+
+	$ git commit -am "Your message"			
+	
+	Now merge your changes to dev without a fast-forward
+
+	$ git checkout dev
+	$ git merge --no-ff myFeature
+	
+	Now push changes to the server
+
+	$ git push origin dev
+	$ git push origin myFeature
+	
+	
+Rename a local and remote branch (https://multiplestates.wordpress.com/2015/02/05/rename-a-local-and-remote-branch-in-git/)
+	1. 	Rename your local branch.
+		If you are on the branch you want to rename:
+			git branch -m new-name
+
+		If you are on a different branch:
+			git branch -m old-name new-name
+
+	2. 	Delete the old-name remote branch and push the new-name local branch.
+			git push origin :old-name new-name
+
+	3. 	Reset the upstream branch for the new-name local branch.
+		Switch to the branch and then:
+			git push origin -u new-name
+
+
+List of merged branches (with dev as root):
+from https://stackoverflow.com/questions/21623699/is-it-possible-to-get-a-list-of-merges-into-a-branch-from-the-github-website-or
+	git log --merges --first-parent development --pretty=format:"%<(10,trunc)%aN %C(white)%<(15)%ar%Creset %C(red bold)%Creset %s"
+
+Alternatively, list of all remote branches with creator
+	git for-each-ref --format='%(committerdate) %09 %(authorname) %09 %(refname)' | sort -k5n -k2M -k3n -k4n
+	
+	
+----------
+ENCRYPTION
+----------
+
+Encrypt the file 'doc.txt' to 'doc.gpg'
+	gpg --output doc.gpg --encrypt --recipient <email_address> doc.txt
+
+	NOTE 	<email_address> can be replaced with a fingerprint like
+		3C149DC3DCD2B24E9F426B923CB993BF83958230
+
+		
+		
+Decrypt the file 'doc.txt.gpg' to 'doc.txt'
+	gpg --output doc.txt --decrypt doc.txt.gpg
+
+	
+
+Import a key from the file 'sandbox.key'
+	gpg --import .\sandbox.key
+
+
+Long key format for gpg
+gpg --list-keys --keyid-format LONG
+
+
+----------
+POWERSHELL
+----------
+
+Recursively look for file
+	Get-ChildItem -Path C:\git\repay-gateway -Filter sqs.tf -Recurse
+	
+Get PowerShell prompt colors
+	Get-PSReadLineOption 
+	
+Set PowerShell prompt colors
+	Set-PSReadLineOption -Colors @{ "Parameter" = "#BFFF00" }
+	
+	
