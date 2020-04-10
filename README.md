@@ -13,6 +13,3 @@ The
 file should be extracted to
 	%USERPROFILE%\.Rider2018.3\config\settings.zip
 	
-	
-	
-
