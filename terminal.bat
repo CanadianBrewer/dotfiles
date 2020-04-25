@@ -1,2 +1,2 @@
-start "" "wt.exe" -d c:\sandbox ; split-pane -V -p Bash
+start "" "wt.exe" -p "PowerShell Core" ; split-pane -V -p Bash
 exit
