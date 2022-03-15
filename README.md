@@ -19,3 +19,4 @@ A couple of resources for managing ssh keys:
 https://stackoverflow.com/questions/18404272/running-ssh-agent-when-starting-git-bash-on-windows
 which links to
 https://help.github.com/en/github/authenticating-to-github/working-with-ssh-key-passphrases#auto-launching-ssh-agent-on-git-for-windows
+
