@@ -1,6 +1,14 @@
 ---
 GIT
 ---
+Push a new local repo to github
+	1. Create repo using gitub.com ui
+	2. git init (in your local repo directory if needed)
+	3. git add .
+	4. git commit -m "baseline"
+	5. git remote add origin git@github.com:canadianbrewer/<my-new-project>.git
+	6. new-project.git
+
 
 Create a new branch from DEV
 	switch to dev
@@ -12,7 +20,8 @@ Create a new branch from DEV
 	git fetch 
 	get checkout -b <branch name>
 	git push --set-upstream origin <branch name>
-	
+	-- or --
+	git push -u origin <branch name>
 	
 	
 Delete a local branch
@@ -107,4 +116,5 @@ Get PowerShell prompt colors
 Set PowerShell prompt colors
 	Set-PSReadLineOption -Colors @{ "Parameter" = "#BFFF00" }
 	
-	
+Remove a directory recursively
+	Remove-Item -recurse -force -path <path>
