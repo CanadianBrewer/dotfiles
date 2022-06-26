@@ -7,7 +7,7 @@ Push a new local repo to github
 	3. git add .
 	4. git commit -m "baseline"
 	5. git remote add origin git@github.com:canadianbrewer/<my-new-project>.git
-	6. new-project.git
+	6. git push -u origin main 
 
 
 Create a new branch from DEV
