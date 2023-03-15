@@ -1,0 +1,48 @@
+private List<object> ProcessItems(List<object> incomingItems) {
+	var itemsToProcess = new ConcurrentBag<object>(incomingItems);
+    var itemsProcessed = new ConcurrentBag<object>();
+
+     try {
+		if (itemsToProcess.IsEmpty) {
+			_logger.LogDebug("Nothing to process");
+		}
+        else {
+			var count = itemsToProcess.Count;
+            _logger.LogDebug($"Processing {count} items");
+
+            // ref: https://stackoverflow.com/questions/36564596/how-to-limit-the-maximum-number-of-parallel-tasks-in-c-sharp
+            using (var concurrencySemaphore = new SemaphoreSlim(_config.DegreeOfParallelization)) {
+				var processingTasks = new List<Task>();
+                while (!itemsToProcess.IsEmpty) {
+					concurrencySemaphore.Wait();
+
+                    var t = Task.Run(async () => {
+						try {
+							if (itemsToProcess.TryTake(out object item)) {
+								System.Diagnostics.Debug.WriteLine($"Left to process {itemsToProcess.Count}");
+                                await ProcessItem(item);
+                                if (item.Transfers != null && item.Transfers.Any()) {
+									itemsProcessed.Add(item);
+								}
+							}
+						}
+                        finally {
+							_ = concurrencySemaphore.Release();
+						}
+					});
+
+                    processingTasks.Add(t);
+				}
+
+                Task.WaitAll(processingTasks.ToArray());
+			}
+
+            _logger.LogDebug($"Processing of {count} items completed");
+		}
+	}
+    catch (Exception ex) {
+		_logger.LogError(ex, "Error processing item");
+	}
+
+	return itemsProcessed.ToList();
+}
