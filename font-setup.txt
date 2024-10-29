@@ -1,0 +1,2 @@
+Visual Studio font: Caskaydia Cove Light (CaskaydiaCove-Light.ttf)
+Windows Terminal font: Caskaydia Cove Light (CaskaydiaCove-Light.ttf)
